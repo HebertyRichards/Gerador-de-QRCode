@@ -1,0 +1,27 @@
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: #FFF;
+  background: linear-gradient(to right, rgb(18, 71, 90), rgb(10, 212, 196));
+}
+
+input {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.output {
+  border: 1px solid #222;
+  padding: 30px 15px;
+  background-color: #0006;
+}

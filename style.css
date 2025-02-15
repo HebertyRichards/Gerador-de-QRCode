@@ -11,8 +11,8 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
-  color: #FFF;
-  background: linear-gradient(to right, rgb(18, 71, 90), rgb(10, 212, 196));
+  color: #fff;
+  background: linear-gradient(to right, rgb(40, 196, 253), rgb(10, 212, 196));
 }
 
 input {
@@ -20,8 +20,54 @@ input {
   margin-bottom: 30px;
 }
 
+input::placeholder {
+font-size: 0.7em;
+}
+
+.input-filename {
+margin-top: 10px;
+}
+
 .output {
+  display: flex;
+  flex-direction: column;
   border: 1px solid #222;
-  padding: 30px 15px;
+  padding: 30px;
   background-color: #0006;
+}
+
+.btn-pdf {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  background-color: rgb(13, 161, 230);
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+.btn-pdf:hover {
+  background-color: rgb(22, 132, 184);
+}
+
+.buttons button {
+  background-color: rgb(13, 161, 230);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  transition: 0.4s;
+}
+
+.buttons button:hover {
+  background-color: rgb(22, 132, 184);
+}
+
+@media (max-width: 800px) {
+input {
+  font-size: 1em;
+}
 }

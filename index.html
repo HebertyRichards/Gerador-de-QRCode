@@ -1,43 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <script src="js/vue.min.js"></script>
     <script src="js/qrious.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
     <title>Gerador de QRCode</title>
-</head>
+  </head>
 
-<body>
-    <div id="app">  
-        <h1>{{ title }}</h1>
-        <div>
-            <input type="text" size="25"
-                placeholder="Digite para gerar..."
-                v-model="text">
-        </div>
+  <body>
+    <div id="app">
+      <h1>{{ title }}</h1>
 
-        <div v-if="text" class="output">
-            <img :src="newQRCode" alt="QRCode">
+      <div>
+        <input
+          type="text"
+          placeholder="Digite o conteúdo do QR Code"
+          v-model="text"
+        />
+      </div>
+
+      <div v-if="text" class="output">
+        <img :src="newQRCode" alt="QRCode" />
+
+        <input
+          class="input-filename"
+          placeholder="Digite o nome do arquivo (opcional)"
+          v-model="pdfFilename"
+        />
+        <div class="buttons">
+          <button @click="downloadPDF">Baixar PDF</button>
+          <button @click="downloadPNG">Baixar PNG</button>
         </div>
+      </div>
     </div>
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                title: 'Gerador QRCode',
-                text: '',
-                qrcode: new QRious({ size: 300 })
-            },
-            computed: {
-                newQRCode() {
-                    this.qrcode.value = this.text
-                    return this.qrcode.toDataURL()
-                }
-            }
-        })
-    </script>
-</body>
 
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          title: "Gerador de QRCode",
+          text: "",
+          pdfFilename: "",
+          qrcode: new QRious({ size: 200 }),
+        },
+        computed: {
+          newQRCode() {
+            this.qrcode.value = this.text;
+            return this.qrcode.toDataURL();
+          },
+        },
+        methods: {
+          downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+
+            pdf.addImage(this.newQRCode, "PNG", 10, 20, 50, 50);
+
+            const filename = this.pdfFilename
+              ? `${this.pdfFilename}.pdf`
+              : "qrcode.pdf";
+
+            pdf.save(filename);
+          },
+          downloadPNG() {
+            const link = document.createElement("a");
+            link.href = this.newQRCode;
+            link.download = this.pdfFilename
+              ? `${this.pdfFilename}.png`
+              : "qrcode.png";
+            link.click();
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

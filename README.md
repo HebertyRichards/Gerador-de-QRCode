@@ -26,11 +26,6 @@ Este projeto é um **gerador de QR Code desenvolvido com Vue.js**, que permite a
 
 ---
 
-## 🚀 Como Executar Localmente
+## ✏️ Infos
 
-1. Clone o repositório:
-
-   ```bash
-   git clone https://github.com/seu-usuario/qrcode-generator-vue.git
-   cd qrcode-generator-vue
-
+-Deploy: https://hebertyrichards.github.io/Gerador-de-QRCode/
